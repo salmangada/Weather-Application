@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -17,7 +16,7 @@ public class WeatherService{
     private String cityName;
     private String unit;
     private String API_key="";
-    private String API ="https://api.openweathermap.org/data/2.5/weather?q="+getCityName()+"&units="+getUnit()+"&appid="+API_key;
+
 
     public String getCityName() {
         return cityName;
@@ -35,41 +34,48 @@ public class WeatherService{
         this.unit = unit;
     }
 
+    //Main request method
     public JSONObject getWeather(){
         try{
             HttpClient client = HttpClient.newHttpClient();
 
-
-            HttpRequest request =   HttpRequest.newBuilder().uri(URI.create(API))
-                    .build();
-
-
+            String API_URL ="https://api.openweathermap.org/data/2.5/weather?q="+getCityName()+"&units="+getUnit()+"&appid="+API_key;
+            HttpRequest request =   HttpRequest.newBuilder().uri(URI.create(API_URL)).build();
 
             HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
-
             return new JSONObject(httpResponse.body().toString());
-        }catch (IOException | InterruptedException | URISyntaxException e){
+
+        }catch (IOException | InterruptedException e){
             e.printStackTrace();
         }
         return null;
     }
 
+    //Check weather data for city exists or not
+    public Boolean checkWeather(){
+        if(getWeather().getInt("cod")==200){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
     public JSONArray getWeatherArray()  {
-        JSONArray weather = getWeather().getJSONArray("weather");
-        return weather;
+            JSONArray weather = getWeather().getJSONArray("weather");
+            return weather;
     }
 
 
     public JSONObject getMain()  {
-        JSONObject main = getWeather().getJSONObject("main");
-        return main;
+            JSONObject main = getWeather().getJSONObject("main");
+            return main;
     }
 
 
     public JSONObject getWind() {
-        JSONObject wind = getWeather().getJSONObject("wind");
-        return wind;
+            JSONObject wind = getWeather().getJSONObject("wind");
+            return wind;
     }
 
 
