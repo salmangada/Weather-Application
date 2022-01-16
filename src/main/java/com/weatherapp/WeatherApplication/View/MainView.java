@@ -81,7 +81,7 @@ public class MainView extends UI {
     private void setLogo(){
         HorizontalLayout logo = new HorizontalLayout();
         logo.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        Image img= new Image(null,new ClassResource("static/logo.png"));
+        Image img= new Image(null,new ClassResource("logo.png"));
 
         logo.setWidth("240px");
         logo.setHeight("240px");
@@ -200,7 +200,7 @@ public class MainView extends UI {
             defaultUnit = "\u00b0"+"C";
         }
 
-        JSONObject mainObject = weatherService.getWeather();
+        JSONObject mainObject = weatherService.getMain();
         int t = mainObject.getJSONObject("main").getInt("temp");
         currentTemp.setValue(t +defaultUnit);
     }
