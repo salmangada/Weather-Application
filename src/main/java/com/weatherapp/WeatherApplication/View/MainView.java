@@ -200,26 +200,25 @@ public class MainView extends UI {
         }else{
             weatherService.setUnit("metric");
         }
+        JSONObject weather = weatherService.getWeather();
 
-        if(weatherService.checkWeather()==true){
+        if(weather.getInt("cod")==200){
 
             if(unitSelect.getValue().equals("Farhenite")){
-                weatherService.setUnit("imperials");
                 unitSelect.setValue("F");
                 defaultUnit = "\u00b0"+"F";
             }else{
-                weatherService.setUnit("metric");
                 unitSelect.setValue("C");
                 defaultUnit = "\u00b0"+"C";
             }
 
-            JSONObject mainObject = weatherService.getMain();
-            int t = mainObject.getInt("temp");
-            currentTemp.setValue(t +defaultUnit);
+
+            int temp = weather.getJSONObject("main").getInt("temp");
+            currentTemp.setValue(temp +defaultUnit);
 
             String iconCode=null;
             String weatherDescriptionNew = null;
-            JSONArray jsonArray = weatherService.getWeatherArray();
+            JSONArray jsonArray = weather.getJSONArray("weather");
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject weatherObj= jsonArray.getJSONObject(i);
                 iconCode = weatherObj.getString("icon");
@@ -229,13 +228,13 @@ public class MainView extends UI {
             iconImage.setSource(new ExternalResource("http://openweathermap.org/img/wn/"+iconCode+"@2x.png"));
 
             weatherDescription.setValue("Description : "+weatherDescriptionNew);
-            minWeather.setValue("Min Tempeature "+weatherService.getMain().getFloat("temp_min")+unitSelect.getValue());
-            maxWeather.setValue("Max Tempeature "+weatherService.getMain().getFloat("temp_max")+unitSelect.getValue());
+            minWeather.setValue("Min Tempeature "+weather.getJSONObject("main").getFloat("temp_min")+unitSelect.getValue());
+            maxWeather.setValue("Max Tempeature "+weather.getJSONObject("main").getFloat("temp_max")+unitSelect.getValue());
 
-            pressure.setValue("Pressure : "+ weatherService.getMain().getFloat("pressure"));
-            humidity.setValue("Himdity : "+weatherService.getMain().getFloat("humidity"));
-            wind.setValue("Wind : "+weatherService.getWind().getFloat("speed"));
-            feesLike.setValue("Feels Like : "+weatherService.getMain().getFloat("feels_like"));
+            pressure.setValue("Pressure : "+ weather.getJSONObject("main").getFloat("pressure"));
+            humidity.setValue("Himdity : "+weather.getJSONObject("main").getFloat("humidity"));
+            wind.setValue("Wind : "+weather.getJSONObject("wind").getFloat("speed"));
+            feesLike.setValue("Feels Like : "+weather.getJSONObject("main").getFloat("feels_like"));
 
             location.setValue("Currently in "+city);
 
