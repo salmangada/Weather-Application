@@ -15,7 +15,7 @@ public class WeatherService{
 
     private String cityName;
     private String unit;
-    private String API_key="";
+    private String API_key="29756fda4f92de24a4935a802412816b";
 
 
     public String getCityName() {
