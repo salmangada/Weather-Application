@@ -236,7 +236,7 @@ public class MainView extends UI {
             wind.setValue("Wind : "+weather.getJSONObject("wind").getFloat("speed"));
             feesLike.setValue("Feels Like : "+weather.getJSONObject("main").getFloat("feels_like"));
 
-            location.setValue("Currently in "+city);
+            location.setValue("Currently in "+weather.getString("name"));
 
             mainLayout.addComponents(dashboard,mainDescription);
         }else{
