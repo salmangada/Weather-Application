@@ -114,6 +114,7 @@ public class MainView extends UI {
         //Text field
         cityTextField = new TextField();
         cityTextField.setWidth("80%");
+        cityTextField.setPlaceholder("City name");
         formLayout.addComponent(cityTextField);
 
 
