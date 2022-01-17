@@ -1,6 +1,7 @@
 # Weather Application
 An application built in Spring Boot and Vaadin as UI for the daily weather stats using the weather API from OpenWeatherMap.
 
+**View Demo(https://weather-data-tracker.herokuapp.com/)**
 ## Guide
 1. Download the project.
 2. Go to **[OpenWeatherMap](https://openweathermap.org/)** and Sign-Up. Generate your API key and copy it.
