@@ -10,3 +10,7 @@ An application built in Spring Boot and Vaadin as UI for the daily weather stats
    API_KEY = your API key.
    ```
 4. Run the application.
+
+## Screenshots
+![Capture4](https://user-images.githubusercontent.com/70872374/149720348-503fd4d1-9575-40a3-94e0-1c74828ba133.PNG)
+
