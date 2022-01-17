@@ -7,4 +7,5 @@ An application built in Spring Boot and Vaadin as UI for the daily weather stats
 3. In project directory go to `src/main/resources/application.properties` file and insert the following code.
     ```
    API_KEY = your API key.
+   ```
 4. Run the application.
