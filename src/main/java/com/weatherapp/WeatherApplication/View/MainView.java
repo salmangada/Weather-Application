@@ -191,7 +191,7 @@ public class MainView extends UI {
     private void updateUI()  {
 
         String city = cityTextField.getValue();
-
+        city = city.replaceAll("\\s","");
         String defaultUnit;
 
         weatherService.setCityName(city);

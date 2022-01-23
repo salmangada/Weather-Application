@@ -42,7 +42,6 @@ public class WeatherService{
         try{
             HttpClient client = HttpClient.newHttpClient();
 
-            System.out.println(API_key);
             String API_URL ="https://api.openweathermap.org/data/2.5/weather?q="+getCityName()+"&units="+getUnit()+"&appid="+API_key;
             HttpRequest request =   HttpRequest.newBuilder().uri(URI.create(API_URL)).build();
 
